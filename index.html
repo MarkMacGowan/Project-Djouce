@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
 </head>
+
 <body>
     <h1>The Budget App</h1>
     <div>
         <button href="newBudgetForm.html">+</button>
     </div>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script id="testChart">
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx,
+        {
+            type: 'doughnut',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green'],
+                datasets: [{
+                    label: 'My First Dataset',
+                    backgroundColor: 'rgb(255,99,132)',
+                    borderColor: 'rgb(255,99,132)',
+                    data: [24, 25, 25, 25]
+                }]
+            }
+        });
+</script>
+<script>
+    const { webFrame } = require('electron')
+</script>
+
 </html>
