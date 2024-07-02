@@ -1,41 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
+    <style>
+        #budgetForm {
+            display: none; /* You have to press the button to see the form */
+        }
+    </style>
+    <script>
+        function toggleForm() {
+            var form = document.getElementById("budgetForm");
+            if (form.style.display === "none") {
+                form.style.display = "block";
+            } else {
+                form.style.display = "none";
+            }
+        }
+    </script>
 </head>
 
+ <!-- Inputs below Konrad -->
 <body>
     <h1>The Budget App</h1>
     <div>
-        <button href="newBudgetForm.html">+</button>
+        <button onclick="toggleForm()">+</button>
     </div>
-    <div>
-        <canvas id="myChart"></canvas>
+    <div id="budgetForm">
+        <h2>New Budget</h2>
+        <form action="/action_Page.php">
+            <!-- User Information -->
+            <label for="fname">First Name</label><br>
+            <input type="text" id="fname" name="fname"><br>
+
+            <label for="lname">Last Name</label><br>
+            <input type="text" id="lname" name="lname"><br><br>
+
+            <!-- Income Details -->
+            <h3>Income Details</h3>
+            <label for="incomeSource">Income Source Name</label><br>
+            <input type="text" id="incomeSource" name="incomeSource"><br>
+
+            <label for="incomeAmount">Income Amount</label><br>
+            <input type="number" id="incomeAmount" name="incomeAmount"><br>
+
+            <label for="incomeFrequency">Income Frequency</label><br>
+            <select id="incomeFrequency" name="incomeFrequency">
+                <option value="monthly">Monthly</option>
+                <option value="bi-weekly">Bi-weekly</option>
+                <option value="weekly">Weekly</option>
+            </select><br>
+
+            <label for="incomeDate">Income Date</label><br>
+            <input type="date" id="incomeDate" name="incomeDate"><br><br>
+
+            <!-- Expenses -->
+            <h3>Expenses</h3>
+            <label for="expenseCategory">Expense Category</label><br>
+            <input type="text" id="expenseCategory" name="expenseCategory"><br>
+
+            <label for="expenseAmount">Expense Amount</label><br>
+            <input type="number" id="expenseAmount" name="expenseAmount"><br>
+
+            <label for="expenseFrequency">Expense Frequency</label><br>
+            <select id="expenseFrequency" name="expenseFrequency">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+            </select><br>
+
+            <label for="expenseDate">Expense Date</label><br>
+            <input type="date" id="expenseDate" name="expenseDate"><br>
+
+            <label for="paymentMethod">Payment Method</label><br>
+            <select id="paymentMethod" name="paymentMethod">
+                <option value="credit_card">Credit Card</option>
+                <option value="cash">Cash</option>
+                <option value="bank_transfer">Bank Transfer</option>
+            </select><br><br>
+
+            <input type="submit" value="Submit"> 
+        </form>
     </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script id="testChart">
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx,
-        {
-            type: 'doughnut',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green'],
-                datasets: [{
-                    label: 'My First Dataset',
-                    backgroundColor: 'rgb(255,99,132)',
-                    borderColor: 'rgb(255,99,132)',
-                    data: [24, 25, 25, 25]
-                }]
-            }
-        });
-</script>
-<script>
-    const { webFrame } = require('electron')
-</script>
-
 </html>
