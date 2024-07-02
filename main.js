@@ -1,16 +1,23 @@
-console.warn("electron is running...");
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require('path');
+
+let mainWindow;
 
 function createWindow() {
-    const win = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
             nodeIntegration: true,
-            contextIsolation: false 
+            contextIsolation: false
         }
     });
-    win.loadFile('index.html');
+
+    mainWindow.loadFile(path.join(__dirname, 'index.html'));
+
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    });
 }
 
 app.whenReady().then(createWindow);
@@ -27,48 +34,31 @@ app.on('activate', () => {
     }
 });
 
+// Konrad Start Creates a new window for newBudgetForm
+function createNewBudgetFormWindow() {
+    const newWindow = new BrowserWindow({
+        width: 600,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
+    });
 
-function toggleForm() {
-    var form = document.getElementById("budgetForm");
-    if (form.style.display === "none") {
-        form.style.display = "block";
-    } else {
-        form.style.display = "none";
-    }
+    newWindow.loadFile(path.join(__dirname, 'newBudgetForm.html'));
+
+    newWindow.on('closed', () => {
+        newWindow = null;
+    });
 }
-// for the inputs to be able to be used as variables Konrad
 
-function handleSubmit(event) {
-    event.preventDefault(); 
+// Listen for the 'openNewBudgetForm' ipc
+ipcMain.on('openNewBudgetForm', (event, arg) => {
+    createNewBudgetFormWindow();
+});
 
-    // User Information
-    var firstName = document.getElementById('fname').value;
-    var lastName = document.getElementById('lname').value;
-
-    // Income Details
-    var incomeSource = document.getElementById('incomeSource').value;
-    var incomeAmount = document.getElementById('incomeAmount').value;
-    var incomeFrequency = document.getElementById('incomeFrequency').value;
-    var incomeDate = document.getElementById('incomeDate').value;
-
-    // Expenses
-    var expenseCategory = document.getElementById('expenseCategory').value;
-    var expenseAmount = document.getElementById('expenseAmount').value;
-    var expenseFrequency = document.getElementById('expenseFrequency').value;
-    var expenseDate = document.getElementById('expenseDate').value;
-    var paymentMethod = document.getElementById('paymentMethod').value;
-
-    // variables
-    console.log("First Name:", firstName);
-    console.log("Last Name:", lastName);
-    console.log("Income Source:", incomeSource);
-    console.log("Income Amount:", incomeAmount);
-    console.log("Income Frequency:", incomeFrequency);
-    console.log("Income Date:", incomeDate);
-    console.log("Expense Category:", expenseCategory);
-    console.log("Expense Amount:", expenseAmount);
-    console.log("Expense Frequency:", expenseFrequency);
-    console.log("Expense Date:", expenseDate);
-    console.log("Payment Method:", paymentMethod);
-
-}
+// Output data from newBudgetForm.html
+ipcMain.on('submitBudgetFormData', (event, formData) => {
+    console.log('Received form data in main process:', formData);
+});
+// Konrad End
