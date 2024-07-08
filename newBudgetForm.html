@@ -50,14 +50,7 @@
         </select><br>
 
         <label for="expenseDate">Expense Date</label><br>
-        <input type="date" id="expenseDate" name="expenseDate"><br>
-
-        <label for="paymentMethod">Payment Method</label><br>
-        <select id="paymentMethod" name="paymentMethod">
-            <option value="credit_card">Credit Card</option>
-            <option value="cash">Cash</option>
-            <option value="bank_transfer">Bank Transfer</option>
-        </select><br><br>
+        <input type="date" id="expenseDate" name="expenseDate"><br><br>
 
         <button type="submit">Submit</button>
     </form>
@@ -81,8 +74,7 @@
                 expenseCategory: document.getElementById('expenseCategory').value,
                 expenseAmount: document.getElementById('expenseAmount').value,
                 expenseFrequency: document.getElementById('expenseFrequency').value,
-                expenseDate: document.getElementById('expenseDate').value,
-                paymentMethod: document.getElementById('paymentMethod').value
+                expenseDate: document.getElementById('expenseDate').value
             };
 
             // Send form data to main js
