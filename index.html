@@ -1,14 +1,42 @@
+<!--Mark-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
 </head>
+
 <body>
     <h1>The Budget App</h1>
     <div>
-        <button href="newBudgetForm.html">+</button>
+        <a href="newBudgetForm.html" target="_blank" width=300 height=200>
+            <button>+</button>
+        </a>
+
     </div>
+    <div>
+        <a href="chartPlacementTest.html" target="_blank" width=300 height=200>
+            <button>Chart Test Window</button>
+        </a>
+
+    </div>
+    <div>
+        <button onclick="createHTMLFile()">Create New HTML page</button>
+    </div>
+
 </body>
+
+<script>
+    const { webFrame } = require('electron')
+</script>
+<script>
+    function createHTMLFile() {
+        console.warn("Function createHTMLfile Acessed")
+        var opened = window.open("");
+        opened.document.write("<html><head><title>MyTitle</title></head><body></body></html>");
+    } 
+</script>
+
 </html>
