@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Placement Test</title>
+</head>
+
+<!--Mark-->
+<body>
+    
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="testChart">
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx,
+        {
+            type: 'doughnut',
+            data: {
+                labels: ['Red', 'Blue', 'Green', 'Yellow'],
+                datasets: [{
+                    label: 'My First Dataset',
+                    backgroundColor: ['rgb(200,0,0,100)','rgb(0,0,100,100)','rgb(100,200,0,100)','rgb(200,100,0,100)',],
+                    borderColor: 'rgb(100,100,100)',
+                    data: [24, 25, 25, 25],
+                     options:{cutout:10}
+                }
+            ]},
+           
+        });
+</script>
+</html>
