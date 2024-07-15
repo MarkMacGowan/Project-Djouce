@@ -1,27 +1,20 @@
-console.warn("electron is running...")
-const {app,BrowserWindow}= require('electron')
+const {app, BrowserWindow} = require('electron') 
+const url = require('url') 
+const path = require('path')  
 
-function createWindow()
-{
-    const win=new BrowserWindow({
-        width:800,
-        height:600,
-        webPreferences:{
-            nodeIntegration:true
-        }
-    })
-    win.loadFile("index.html")
-}
-app.whenReady().then(createWindow)
+let win  
 
-function createFormWindow()
-{
-    const win=new BrowserWindow({
-        width:400,
-        height:300,
-        webPreferences:{
-            nodeIntegration:true
-        }
-    })
-    win.loadFile("newBudgetForm.html")
-}
+function createWindow() { 
+   win = new BrowserWindow({width: 800, height: 600}) 
+   win.loadURL(url.format ({ 
+      pathname: path.join(__dirname, 'index.html'), 
+      protocol: 'file:', 
+      slashes: true 
+   })) 
+}  
+
+app.on('ready', createWindow) 
+
+ 
+
+ 

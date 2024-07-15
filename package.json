@@ -1,5 +1,5 @@
 {
-  "name": "budgetapp",
+  "name": "electron-app",
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "electron": "^31.0.1"
+    "electron": "^30.0.8",
+    "firebase": "^10.12.3"
   }
 }
