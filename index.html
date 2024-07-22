@@ -1,0 +1,69 @@
+<!--Mark-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+</head>
+
+<body>
+    <h1>The Budget App</h1>
+    <div>
+        <a href="newBudgetForm.html" target="_blank" width=400 height=300>
+            <button>+</button>
+        </a>
+
+    </div>
+    <div>
+        <a href="budget.html" target="_blank" width=300 height=200>
+            <button>New Budget</button>
+        </a>
+    </div>
+    <div>
+        <button onclick="createHTMLFile()">Create New HTML page</button>
+    </div>
+    <div>
+        <button onclick="createElementOnPage()">Create New Element</button>
+    </div>
+
+</body>
+
+<script>
+    const { webFrame } = require('electron')
+</script>
+<script>
+    function createHTMLFile() {
+        console.log("Function createHTMLfile Acessed");
+        var opened = window.open("");
+        opened.document.write("<html><head><title>MyTitle</title></head><body></body></html>");
+
+    }
+    function createElementOnPage() {
+        console.log("createElementOnPage function accessed")
+        console.log("....................")
+
+
+        console.log("Creating div element...");
+        const projectIconDiv = document.createElement("div");
+        console.log("Div element created");
+
+        console.log("Nest button element within a element within div...")
+        projectIconDiv.innerHTML = '<a href="budget.html"><button>Previous Project</button></a>';
+        console.log("Button element nested within a element nested in div")
+
+        console.log("Appending DIV to page...")
+        document.body.appendChild(projectIconDiv);
+        console.log("DIV appended to page")
+
+    }
+    function checkDatabaseForProjects() {
+        // if database has projects, check number of projects
+    }
+    function noOfProjects() {
+        // query for number of projects stored in database 
+    }
+</script>
+
+</html>
