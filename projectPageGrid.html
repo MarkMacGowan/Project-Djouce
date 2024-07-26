@@ -1,0 +1,89 @@
+<!-- Mark -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+            background-color: #2196F3;
+            padding: 1px;
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 3px;
+            font-size: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>The Budget App</h1>
+
+    <!--     <div>
+        <a href="newBudgetForm.html" target="_blank" width=400 height=300>
+            <button>+</button>
+        </a>
+    </div> -->
+    <div id='projectGrid' class="grid-container">
+        <div class="grid-item">
+            <a href="inputoutput.html" target="_blank" width=400 height=300>
+                <button>+</button>
+            </a>
+        </div>
+    </div>
+    <!-- for testing purposes -->
+    <div>
+        <a  href="budget.html" target="_blank" width=300 height=200>
+            <button>Budget Screen</button>
+        </a>
+    </div>
+
+    <div>
+        <button onclick="createButton()">Create New Element</button>
+    </div>
+
+</body>
+
+<script>
+    const { webFrame } = require('electron')
+</script>
+<script>
+    function checkDatabaseForProjects() {
+            // if database has projects, check number of projects
+        }
+    function checkNoOfProjects() {
+            // query for number of projects stored in database 
+        }
+    function createButton() {
+     let projectName;
+     let noProjects;
+     const gridToBeAppended=document.getElementById('projectGrid');
+
+     for (let i=0;i<3;i++){
+        
+        let divIcon=document.createElement("div");
+        divIcon.id='project'+i;
+        divIcon.className='grid-item';
+        
+        let divName=divIcon.id;
+        divIcon.innerHTML='<a href="budget.html" target="_blank" width=400 height=300><button>'+divName+'</button></a>';
+
+        gridToBeAppended.appendChild(divIcon);
+     }
+    
+    }
+
+   
+ 
+</script>
+
+</html>

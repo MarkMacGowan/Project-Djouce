@@ -1,0 +1,58 @@
+/* form-styles.css */
+/* Daniel and Uche
+/* Set the background color of the entire page to light blue */
+body {
+    background-color: lightblue;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Style the main heading */
+h1 {
+    color: navy;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style the form and its elements */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+input, select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: navy;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: darkblue;
+}
