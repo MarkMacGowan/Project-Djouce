@@ -14,15 +14,15 @@ firebase.initializeApp(firebaseConfig);
 
 // Set database variable
 const database = firebase.database()
- const auth = firebase.auth()
+const auth = firebase.auth()
 
 
 localStorage.setItem(key)
 // Set up our register function
 function checkKey() {
     window.location.href = 'inputoutput.html';
-   alert(localStorage.getItem('key'))
-   
+    alert(localStorage.getItem('key'))
+
 }
 function register() {
     // Get all input fields
@@ -53,7 +53,7 @@ function register() {
 
             // Push to Firebase Database
             database_ref.child('users/' + user.uid).set(user_data)
-            
+
             alert('User Created!!')
 
         })
@@ -70,10 +70,11 @@ function register() {
 
 // Set up our login function
 function login() {
+
     // Get all our input fields
     email = document.getElementById('login_email').value
     password = document.getElementById('login_password').value
-    
+
     // Validate input fields
     if (validate_email(email) == false || validate_password(password) == false) {
         alert('Wrong Email or Password')
@@ -98,11 +99,11 @@ function login() {
             // Push to Firebase Database
             database_ref.child('users/' + user.uid).update(user_data)
 
-            
-            
-            alert('User Logged In!!')
-            
 
+
+            alert('User Logged In!!')
+            console.log("User Logged In");
+            window.open("projectPageGrid.html");
         })
         .catch(function (error) {
             // Firebase will use this to alert of its errors
@@ -138,9 +139,9 @@ function save() {
     var budgetName = document.getElementById('budgetName').value
     var budgetIncome = document.getElementById('budgetIncome').value
     var budgetExpeses = document.getElementById('budgetExpeses').value
-    
 
-    database.ref('budgets/' + localStorage.getItem('key') + budgetName ).set({
+
+    database.ref('budgets/' + localStorage.getItem('key') + budgetName).set({
         budgetName: budgetName,
         budgetIncome: budgetIncome,
         budgetExpeses: budgetExpeses
