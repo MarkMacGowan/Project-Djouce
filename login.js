@@ -13,7 +13,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 // Initialize variables 
 const auth = firebase.auth()
-const database = firebase.database()
+const database = firebase.database() 
 
 // Set up our login function
 function login() {
@@ -45,6 +45,9 @@ function login() {
             database_ref.child('users/' + user.uid).update(user_data)
 
             alert('User Logged In!!')
+            window.location = 'inputoutput.html';
+            
+            
 
         })
         .catch(function (error) {

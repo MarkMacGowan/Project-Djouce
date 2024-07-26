@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="Style.css">
+<html>
+
+<body>
+    <div id="container">
+
+        <div id="title_container">
+            <span id="content">
+                <h2 class="typedtext"></h2>
+            </span>
+            <h2 id="sub_header"> create budget </h2>
+        </div>
+
+        <div id="form_container">
+            <input placeholder="name" type="text" id="budgetName" />
+            <input placeholder="income" type="text" id="budgetIncome" />
+            <input placeholder="expeses" type="text" id="budgetExpeses" />
+            <input placeholder="invsout" type="text" id="budgetInVsOut" />
+
+        </div>
+
+        <div id="button_container">
+            <button id="submit" onclick="save()"> create budget </button>
+        </div>
+        <div id="button_container">
+            <button id="submit" onclick="get()"> get budget </button>
+        </div>
+        <div id="button_container">
+            <button id="submit" onclick="update()"> update budget </button>
+        </div>
+        <div id="button_container">
+            <button id="submit" onclick="remove() "> delete budget </button>
+        </div>
+        <div id="button_container">
+            <button id="submit" onclick="checkKey()"> check Key </button>
+        </div>
+
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+    <!-- Our script must be loaded after firebase references -->
+    <script src="firebase.js"></script>
+</body>
+
+</html>
