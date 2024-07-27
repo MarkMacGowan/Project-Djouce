@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Placement Test</title>
+    <!--Uche, added css for styling-->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+            background-color: #87CEEB; /* Creates a light blue background */
+            color: white; /* White text for a contrast */
+        }
+        #myChart {
+            max-width: 600px;
+            max-height: 400px;
+            margin-top: 20px;
+        }
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 50%;
+            background-color: #1E90FF; /* Dark blue for the table background */
+            color: white; 
+        }
+        table, th, td {
+            border: 1px solid white;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+    <div>
+        <table>
+            <!--Uche, added '<th>' and '<td>' tags for table structure and formatting-->
+            <tr><th>Category</th></tr>
+            <tr><td>Income</td></tr>
+            <tr><td>By Time</td></tr>
+            <tr><td>Expenses</td></tr>
+        </table>
+    </div>
+
+  <!-- Uche, ajusted the 'background colour' values to use the suitable RGB notation-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Income', 'Expenses', 'Savings'],
+                datasets: [{
+                    label: 'My First Dataset',
+                    backgroundColor: ['rgb(0,120,255)', 'rgb(255,50,0)', 'rgb(0,220,0)'],
+                    borderColor: 'rgb(255, 255, 255)',
+                    data: [25, 10, 5],
+                }]
+            },
+        });
+    </script>
+</body>
+
+</html> 
