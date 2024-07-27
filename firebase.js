@@ -16,6 +16,16 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database()
 const auth = firebase.auth()
 
+// Log Out Function Konrad
+function logout() {
+    auth.signOut().then(() => {
+        alert('User logged out');
+        window.location.href = 'index.html';
+    }).catch((error) => {
+        alert('Error logging out: ' + error.message);
+    });
+}
+
 // Set up our register function
 function register() {
     // Get all input fields
@@ -48,7 +58,7 @@ function register() {
             database_ref.child('users/' + user.uid).set(user_data)
 
             alert('User Created!!')
-            window.open("projectPageGrid.html"); 
+            //window.open("projectPageGrid.html");
 
         })
         .catch(function (error) {
@@ -97,7 +107,7 @@ function login() {
 
             alert('User Logged In!!')
             console.log("User Logged In");
-            window.open("projectPageGrid.html");
+            openBudget();
         })
         .catch(function (error) {
             // Firebase will use this to alert of its errors
@@ -107,6 +117,7 @@ function login() {
             alert(error_message)
         })
 }
+
 
 // Validate Functions
 function validate_email(email) {
@@ -132,7 +143,7 @@ function validate_password(password) {
 function save() {
 
     var budgetName = document.getElementById('budgetName').value
-    var incomeSource = document.getElementById('incomeSource').value 
+    var incomeSource = document.getElementById('incomeSource').value
     var incomeAmount = document.getElementById('incomeAmount').value
     var incomeFrequency = document.getElementById('incomeFrequency').value
     var incomeDate = document.getElementById('incomeDate').value
@@ -166,7 +177,7 @@ function get() {
 
         alert(data.budgetIncome)
         alert(key)
-        document.getElementById('incomeSource').value 
+        document.getElementById('incomeSource').value
         document.getElementById('incomeAmount').value
         document.getElementById('incomeFrequency').value
         document.getElementById('incomeDate').value
@@ -180,7 +191,7 @@ function get() {
 }
 
 function update() {
-    var incomeSource = document.getElementById('incomeSource').value 
+    var incomeSource = document.getElementById('incomeSource').value
     var incomeAmount = document.getElementById('incomeAmount').value
     var incomeFrequency = document.getElementById('incomeFrequency').value
     var incomeDate = document.getElementById('incomeDate').value
@@ -209,4 +220,47 @@ function remove() {
     database.ref('users/' + localStorage.getItem('key') + '/' + document.getElementById('budgetName').value).remove()
 
     alert('deleted')
+}
+
+//Mark
+function openBudget() {
+    window.location.href = 'budget.html';
+}
+function openProjectPage() {
+    window.location.href = 'projectPageGrid.html';
+}
+function openBudgetForm() {
+    window.location.href = 'newBudgetForm.html';
+}
+function openLogInPage() {
+    window.location.href = 'Login.html';
+}
+//information added to grid
+function addProjectOptionsToGrid() {
+    checkProjectPresent();
+    if (checkProjectPresent == true) {
+        checkProjectAmountForUser
+    } else {
+        // do nothing
+    }
+    let projectName;
+    let noProjects;
+    const gridToBeAppended = document.getElementById('projectGrid');
+    for (let i = 0; i < 3; i++) {
+        let divIcon = document.createElement("div");
+        divIcon.id = 'project' + i;
+        divIcon.className = 'grid-item';
+
+        let divName = divIcon.id;
+        divIcon.innerHTML = '<a><button onclick="openBudget()">' + divName + '</button></a>';
+
+        gridToBeAppended.appendChild(divIcon);
+    }
+}
+//information retrieved from server
+function checkProjectPresent() {
+
+}
+function checkProjectAmountForUser() {
+
 }
