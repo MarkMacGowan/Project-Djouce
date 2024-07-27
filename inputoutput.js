@@ -94,3 +94,4 @@ function getUser(){
     alert( user.uid)
     alert('hi')
 }
+}
