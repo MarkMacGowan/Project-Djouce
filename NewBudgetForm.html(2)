@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Budget</title>
+    <link rel="stylesheet" href="form-styles.css">
+</head>
+
+<body>
+    <h1>New Budget</h1>
+    <form action="/action_Page.php">
+        <!-- User Information -->
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="fname">
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lname">
+
+        <!-- Income Details -->
+       <!--Uche, added a div class for income details -->
+        <div class="section-header">Income Details</div>
+        <label for="incomeSource">Income Source Name</label>
+        <input type="text" id="incomeSource" name="incomeSource">
+
+        <label for="incomeAmount">Income Amount</label>
+        <input type="number" id="incomeAmount" name="incomeAmount">
+
+        <label for="incomeFrequency">Income Frequency</label>
+        <select id="incomeFrequency" name="incomeFrequency">
+            <option value="monthly">Monthly</option>
+            <option value="bi-weekly">Bi-weekly</option>
+            <option value="weekly">Weekly</option>
+        </select>
+
+        <label for="incomeDate">Income Date</label>
+        <input type="date" id="incomeDate" name="incomeDate">
+
+        <!-- Expenses -->
+       <!--Uche, added a div class for Expenses -->
+        <div class="section-header">Expenses</div>
+        <label for="expenseCategory">Expense Category</label>
+        <input type="text" id="expenseCategory" name="expenseCategory">
+
+        <label for="expenseAmount">Expense Amount</label>
+        <input type="number" id="expenseAmount" name="expenseAmount">
+
+        <label for="expenseFrequency">Expense Frequency</label>
+        <select id="expenseFrequency" name="expenseFrequency">
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+        </select>
+
+        <label for="expenseDate">Expense Date</label>
+        <input type="date" id="expenseDate" name="expenseDate">
+
+        <label for="paymentMethod">Payment Method</label>
+        <select id="paymentMethod" name="paymentMethod">
+            <option value="credit_card">Credit Card</option>
+            <option value="cash">Cash</option>
+            <option value="bank_transfer">Bank Transfer</option>
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div>
+        <button type="button" onclick="closeWin()">Cancel</button>
+    </div>
+
+    <script>
+        let myWindow;
+        function closeWin() {
+            console.warn("electron is running...");
+            myWindow = ("newBudgetForm.html");
+            myWindow.close();
+        }
+    </script>
+</body>
+
+</html>
