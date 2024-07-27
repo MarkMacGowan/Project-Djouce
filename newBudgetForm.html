@@ -13,11 +13,9 @@
     <h1>New Budget</h1>
     <form action="/action_Page.php">
         <!-- User Information (existing fields) -->
-        <label for="fname">First Name</label><br>
-        <input type="text" id="fname" name="fname"><br>
+        <label for="fname">Budget Name</label><br>
+        <input type="text" id="budgetName" name="fname"><br>
 
-        <label for="lname">Last Name</label><br>
-        <input type="text" id="lname" name="lname"><br><br>
 
         <!-- Income Details -->
         <h3>Income Details</h3>
@@ -60,8 +58,33 @@
     </form>
     <!--Mark-->
     <div>
+        <button onclick="save()" type="button">submit</button>
+    </div>
+    <div>
+        <button onclick="get()" type="button">get</button>
+    </div>
+    <div>
+        <button onclick="update()" type="button">update</button>
+    </div>
+    <div>
+        <button onclick="remove()" type="button">delete</button>
+    </div>
+    <div>
         <button onclick="window.close()" type="button">Cancel</button>
     </div>
+    <div>
+        <button onclick="window.close()" type="button">Cancel</button>
+    </div>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+        
+        <!-- Our script must be loaded after firebase references -->
+        <script src="firebase.js"></script>
 </body>
 
 </html>

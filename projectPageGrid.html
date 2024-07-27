@@ -35,14 +35,14 @@
     </div> -->
     <div id='projectGrid' class="grid-container">
         <div class="grid-item">
-            <a href="inputoutput.html" target="_blank" width=400 height=300>
+            <a href="newBudgetForm.html" target="_blank" width=400 height=300>
                 <button>+</button>
             </a>
         </div>
     </div>
     <!-- for testing purposes -->
     <div>
-        <a  href="budget.html" target="_blank" width=300 height=200>
+        <a  href="newBudgetForm.html" target="_blank" width=300 height=200>
             <button>Budget Screen</button>
         </a>
     </div>
@@ -50,7 +50,16 @@
     <div>
         <button onclick="createButton()">Create New Element</button>
     </div>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
 
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+        
+        <!-- Our script must be loaded after firebase references -->
+        <script src="firebase.js"></script>
 </body>
 
 <script>

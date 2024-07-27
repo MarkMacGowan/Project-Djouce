@@ -16,14 +16,8 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database()
 const auth = firebase.auth()
 
-
-localStorage.setItem(key)
 // Set up our register function
-function checkKey() {
-    window.location.href = 'inputoutput.html';
-    alert(localStorage.getItem('key'))
 
-}
 function register() {
     // Get all input fields
     email = document.getElementById('register_email').value
@@ -55,6 +49,7 @@ function register() {
             database_ref.child('users/' + user.uid).set(user_data)
 
             alert('User Created!!')
+            window.open("projectPageGrid.html");
 
         })
         .catch(function (error) {
@@ -87,7 +82,6 @@ function login() {
             // Declare user variable
             var user = auth.currentUser
             localStorage.setItem('key', user.uid);
-            alert(user.uid)
             // Add this user to Firebase Database
             var database_ref = database.ref()
 
@@ -102,7 +96,6 @@ function login() {
 
 
             alert('User Logged In!!')
-            console.log("User Logged In");
             window.open("projectPageGrid.html");
         })
         .catch(function (error) {
@@ -136,15 +129,29 @@ function validate_password(password) {
 }
 
 function save() {
+
     var budgetName = document.getElementById('budgetName').value
-    var budgetIncome = document.getElementById('budgetIncome').value
-    var budgetExpeses = document.getElementById('budgetExpeses').value
+    var incomeSource = document.getElementById('incomeSource').value 
+    var incomeAmount = document.getElementById('incomeAmount').value
+    var incomeFrequency = document.getElementById('incomeFrequency').value
+    var incomeDate = document.getElementById('incomeDate').value
+    var expenseCategory = document.getElementById('expenseCategory').value
+    var expenseAmount = document.getElementById('expenseAmount').value
+    var expenseFrequency = document.getElementById('expenseFrequency').value
+    var expenseDate = document.getElementById('expenseDate').value
 
 
-    database.ref('budgets/' + localStorage.getItem('key') + budgetName).set({
+
+    database.ref('budgets/' + localStorage.getItem('key')  ).set({
         budgetName: budgetName,
-        budgetIncome: budgetIncome,
-        budgetExpeses: budgetExpeses
+        IncomeSource: incomeSource,
+        IncomeAmount: incomeAmount,
+        IncomeFrequency: incomeFrequency,
+        IncomeDate: incomeDate,
+        ExpenseCategory: expenseCategory,
+        ExpenseAmount: expenseAmount,
+        ExpenseFrequency: expenseFrequency,
+        ExpenseDate: expenseDate
     })
 
     alert('Saved')
@@ -152,13 +159,22 @@ function save() {
 
 function get() {
     var budgetName = document.getElementById('budgetName').value
+ 
 
-    var user_ref = database.ref('budgets/' + budgetName)
+    var user_ref = database.ref('budgets/' + localStorage.getItem('key') + document.getElementById('/' +'budgetName').value)
     user_ref.on('value', function (snapshot) {
         var data = snapshot.val()
 
-        alert(data.budgetIncome)
-        alert(key)
+        alert(data.IncomeSource)
+        document.getElementById('incomeSource').innerHTML = data.IncomeSource
+        document.getElementById('incomeAmount').innerHTML = data.IncomeAmount    
+        document.getElementById('incomeFrequency').innerHTML = data.IncomeFrequency
+        document.getElementById('incomeDate').innerHTML = data.IncomeDate
+        document.getElementById('expenseCategory').innerHTML = data.ExpenseCategory
+        document.getElementById('expenseAmount').innerHTML = data.ExpenseAmount
+        document.getElementById('expenseFrequency').innerHTML = data.ExpenseFrequency
+        document.getElementById('expenseDate').innerHTML = data.ExpenseDate
+        alert("key")
 
     })
 
