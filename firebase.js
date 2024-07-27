@@ -17,6 +17,25 @@ const database = firebase.database()
 const auth = firebase.auth()
 
 
+
+
+
+
+// Log Out Function Konrad
+function logout() {
+    auth.signOut().then(() => {
+        alert('User logged out');
+        window.location.href = 'index.html';
+    }).catch((error) => {
+        alert('Error logging out: ' + error.message);
+    });
+}
+
+
+
+
+
+
 localStorage.setItem(key)
 // Set up our register function
 function checkKey() {
