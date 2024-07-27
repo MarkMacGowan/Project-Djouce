@@ -1,1 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="form-styles.css">
+</head>
+<body>
+    <div id="form_content_container">
+        <img src="djouceLogoText.png" alt="djouceLogo">
+        <div id="form_content_inner_container">
+            <input type="email" id="login_email" placeholder="Email">
+            <input type="password" id="login_password" placeholder="Password">
+            <div>
+                <button onclick="login()">Login</button>
+            </div>
+            <div>
+                <a href="index.html" class="button">
+                    <button>Return</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <!-- Our script must be loaded after firebase references -->
+    <script src="firebase.js"></script>
+</body>
+</html>
 
