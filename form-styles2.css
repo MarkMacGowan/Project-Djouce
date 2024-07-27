@@ -1,1 +1,57 @@
+/*This is the second css page for the login page*/
 
+/*This code sets the colour for the background of the login page */
+/*It is showcasing two shades of blue for the background*/
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(to right, #0b91fe, #44c5f8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/*The code is representing the styling of forms and buttons*/
+/*The code is representing the colours of the forms and buttons*/
+#form_content_container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+#form_content_inner_container {
+    display: flex;
+    flex-direction: column;
+}
+
+#form_content_inner_container input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+}
+#form_content_inner_container button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#form_content_inner_container button:hover {
+    background-color: #0056b3;
+}
+
+#form_content_container img {
+    width: 150px;
+    margin-bottom: 20px;
+}
