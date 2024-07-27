@@ -16,14 +16,7 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database()
 const auth = firebase.auth()
 
-
-localStorage.setItem(key)
 // Set up our register function
-function checkKey() {
-    window.location.href = 'inputoutput.html';
-    alert(localStorage.getItem('key'))
-
-}
 function register() {
     // Get all input fields
     email = document.getElementById('register_email').value
@@ -55,6 +48,7 @@ function register() {
             database_ref.child('users/' + user.uid).set(user_data)
 
             alert('User Created!!')
+            window.open("projectPageGrid.html"); 
 
         })
         .catch(function (error) {
@@ -136,53 +130,83 @@ function validate_password(password) {
 }
 
 function save() {
+
     var budgetName = document.getElementById('budgetName').value
-    var budgetIncome = document.getElementById('budgetIncome').value
-    var budgetExpeses = document.getElementById('budgetExpeses').value
+    var incomeSource = document.getElementById('incomeSource').value 
+    var incomeAmount = document.getElementById('incomeAmount').value
+    var incomeFrequency = document.getElementById('incomeFrequency').value
+    var incomeDate = document.getElementById('incomeDate').value
+    var expenseCategory = document.getElementById('expenseCategory').value
+    var expenseAmount = document.getElementById('expenseAmount').value
+    var expenseFrequency = document.getElementById('expenseFrequency').value
+    var expenseDate = document.getElementById('expenseDate').value
 
 
-    database.ref('budgets/' + localStorage.getItem('key') + budgetName).set({
+
+    database.ref('users/' + localStorage.getItem('key') + '/' + document.getElementById('budgetName').value).set({
         budgetName: budgetName,
-        budgetIncome: budgetIncome,
-        budgetExpeses: budgetExpeses
+        IncomeSource: incomeSource,
+        IncomeAmount: incomeAmount,
+        IncomeFrequency: incomeFrequency,
+        IncomeDate: incomeDate,
+        ExpenseCategory: expenseCategory,
+        ExpenseAmount: expenseAmount,
+        ExpenseFrequency: expenseFrequency,
+        ExpenseDate: expenseDate
     })
 
     alert('Saved')
 }
 
 function get() {
-    var budgetName = document.getElementById('budgetName').value
 
-    var user_ref = database.ref('budgets/' + budgetName)
+    var user_ref = database.ref('users/' + localStorage.getItem('key') + '/' + document.getElementById('budgetName').value)
     user_ref.on('value', function (snapshot) {
         var data = snapshot.val()
 
         alert(data.budgetIncome)
         alert(key)
+        document.getElementById('incomeSource').value 
+        document.getElementById('incomeAmount').value
+        document.getElementById('incomeFrequency').value
+        document.getElementById('incomeDate').value
+        document.getElementById('expenseCategory').value
+        document.getElementById('expenseAmount').value
+        document.getElementById('expenseFrequency').value
+        document.getElementById('expenseDate').value
 
     })
 
 }
 
 function update() {
-    var budgetName = document.getElementById('budgetName').value
-    var budgetIncome = document.getElementById('budgetIncome').value
-    var budgetExpeses = document.getElementById('budgetExpeses').value
+    var incomeSource = document.getElementById('incomeSource').value 
+    var incomeAmount = document.getElementById('incomeAmount').value
+    var incomeFrequency = document.getElementById('incomeFrequency').value
+    var incomeDate = document.getElementById('incomeDate').value
+    var expenseCategory = document.getElementById('expenseCategory').value
+    var expenseAmount = document.getElementById('expenseAmount').value
+    var expenseFrequency = document.getElementById('expenseFrequency').value
+    var expenseDate = document.getElementById('expenseDate').value
 
     var updates = {
-        budgetIncome: budgetIncome,
-        budgetExpeses: budgetExpeses
+        IncomeSource: incomeSource,
+        IncomeAmount: incomeAmount,
+        IncomeFrequency: incomeFrequency,
+        IncomeDate: incomeDate,
+        ExpenseCategory: expenseCategory,
+        ExpenseAmount: expenseAmount,
+        ExpenseFrequency: expenseFrequency,
+        ExpenseDate: expenseDate
     }
 
-    database.ref('budgets/' + budgetName).update(updates)
+    database.ref('users/' + localStorage.getItem('key') + '/' + document.getElementById('budgetName').value).update(updates)
 
     alert('updated')
 }
 
 function remove() {
-    var budgetName = document.getElementById('budgetName').value
-
-    database.ref('budgets/' + budgetName).remove()
+    database.ref('users/' + localStorage.getItem('key') + '/' + document.getElementById('budgetName').value).remove()
 
     alert('deleted')
 }
