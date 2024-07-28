@@ -19,7 +19,7 @@ const auth = firebase.auth()
 // Log Out Function Konrad
 function logout() {
     auth.signOut().then(() => {
-        alert('User logged out');
+        //  alert('User logged out');
         window.location.href = 'index.html';
     }).catch((error) => {
         alert('Error logging out: ' + error.message);
@@ -91,7 +91,7 @@ function login() {
             // Declare user variable
             var user = auth.currentUser
             localStorage.setItem('key', user.uid);
-            alert(user.uid)
+            //  alert(user.uid)
             // Add this user to Firebase Database
             var database_ref = database.ref()
 
@@ -105,7 +105,7 @@ function login() {
 
 
 
-            alert('User Logged In!!')
+            //alert('User Logged In!!')
             console.log("User Logged In");
             openProjectPage();
         })
@@ -225,6 +225,7 @@ function remove() {
 //Mark
 function openBudget() {
     window.location.href = 'budget.html';
+
 }
 function openProjectPage() {
     window.location.href = 'projectPageGrid.html';
@@ -232,32 +233,13 @@ function openProjectPage() {
 function openBudgetForm() {
     window.location.href = 'newBudgetForm.html';
 }
-//information added to grid
-/* function addProjectOptionsToGrid() {
-    checkProjectPresent();
-    if (checkProjectPresent == true) {
-        checkProjectAmountForUser
-    } else {
-        // do nothing
-    }
-    let projectName;
-    let noProjects;
-    const gridToBeAppended = document.getElementById('projectGrid');
-    for (let i = 0; i < 3; i++) {
-        let divIcon = document.createElement("div");
-        divIcon.id = 'project' + i;
-        divIcon.className = 'grid-item';
-
-        let divName = divIcon.id;
-        divIcon.innerHTML = '<a><button onclick="openBudget()">' + divName + '</button></a>';
-
-        gridToBeAppended.appendChild(divIcon);
-    }
-} */
-//information retrieved from server
-/* function checkProjectPresent() {
-
+function openLogInPage() {
+    window.location.href = 'Login.html';
 }
-function checkProjectAmountForUser() {
+function openRegisterPage() {
+    window.location.href = 'Register.html';
+}
+function openIndexPage() {
+    window.location.href = 'index.html';
+}
 
-} */

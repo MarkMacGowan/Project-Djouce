@@ -48,25 +48,32 @@
     </style>
 </head>
 
-<body>
+<body onload="getBudgetInfo()">
     <div>
         <canvas id="myChart"></canvas>
     </div>
     <div>
-        <table>
+        <table id="infoTableBudget">
             <!--Uche, added '<th>' and '<td>' tags for table structure and formatting-->
             <tr>
                 <th>Category</th>
+                <th>Info</th>
             </tr>
-            <tr>
+
+            <tr id="incomeRow">
                 <td>Income</td>
+
             </tr>
-            <tr>
-                <td>By Time</td>
-            </tr>
-            <tr>
+            <tr id="expensesRow">
                 <td>Expenses</td>
+
             </tr>
+            <tr id="savingsRow">
+                <td>Savings</td>
+
+            </tr>
+
+
         </table>
     </div>
     <div>
@@ -79,18 +86,81 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Income', 'Expenses', 'Savings'],
-                datasets: [{
-                    label: 'My First Dataset',
-                    backgroundColor: ['rgb(0,120,255)', 'rgb(255,50,0)', 'rgb(0,220,0)'],
-                    borderColor: 'rgb(255, 255, 255)',
-                    data: [25, 10, 5],
-                }]
-            },
-        });
+        function retrieveUserInfo() {
+
+
+        }
+
+        function getBudgetInfo() {
+            var user_ref = database.ref('users/' + localStorage.getItem('key') + '/' + 'budgets/' + localStorage.getItem('budgetName'))
+            user_ref.on('value', function (snapshot) {
+                var data = snapshot.val()
+                const incomeSource = data.IncomeSource
+                const incomeAmount = parseInt(data.IncomeAmount)
+                const incomeFrequency = data.IncomeFrequency
+                const incomeDate = data.IncomeDate
+                const expenseCategory = data.ExpenseCategory
+                const expenseAmount = parseInt(data.ExpenseAmount)
+                const expenseFrequency = data.ExpenseFrequency
+                const expenseDate = data.ExpenseDate
+                const savingsAmount=incomeAmount-expenseAmount
+
+                const myChart = new Chart(ctx,
+                    {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Income', 'Expenses', 'Savings'],
+                            datasets: [{
+                                label: 'My First Dataset',
+                               // backgroundColor: ['rgb(0,120,300)', 'rgb(200,50,0,100)', 'rgb(0,220,0,100)'],
+                                backgroundColor: ['rgb(0,220,0,100)', 'rgb(200,50,0,100)','rgb(0,120,300)' ],
+                                borderColor: 'rgb(1,1,1)',
+                                data: [incomeAmount, expenseAmount, savingsAmount],
+                            }
+                            ]
+                        },
+
+
+                    });
+
+           console.log("incomeRowAppending,,")
+            const incomeRowToBeAppended = document.getElementById('incomeRow');
+            let tdIncome = document.createElement("td");
+            tdIncome.id = "incomeRowInfo";
+            //let tdName = tdPart.id;
+            incomeRowToBeAppended.appendChild(tdIncome);
+
+
+            tdIncome.innerHTML = incomeAmount;
+
+
+            console.log("expensesRow Appending..")
+            const expensesRowToBeAppended = document.getElementById('expensesRow');
+            let tdExpenses = document.createElement("td");
+            tdExpenses.id = "expensesInfo";
+            //let tdName = tdPart.id;
+            expensesRowToBeAppended.appendChild(tdExpenses);
+
+
+            tdExpenses.innerHTML = expenseAmount;
+
+
+            console.log("SavingsRow Appending..")
+            const savngsRowToBeAppended = document.getElementById('savingsRow');
+            let tdSavings = document.createElement("td");
+            tdSavings.id = "byTimeRowInfo";
+            //let tdName = tdPart.id;
+            savngsRowToBeAppended.appendChild(tdSavings);
+
+
+            tdSavings.innerHTML = savingsAmount;
+
+
+
+            })
+
+
+        }
     </script>
 </body>
 <!-- The core Firebase JS SDK is always required and must be listed first -->

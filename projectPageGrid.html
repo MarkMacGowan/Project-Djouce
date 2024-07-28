@@ -28,12 +28,6 @@
 <body onload="getBudgets()">
     <h1>The Budget App</h1>
     
-
-    <!--     <div>
-        <a href="newBudgetForm.html" target="_blank" width=400 height=300>
-            <button>+</button>
-        </a>
-    </div> -->
     <div id='projectGrid' class="grid-container">
         <div class="grid-item">
             <a>
@@ -42,11 +36,7 @@
         </div>
     </div>
     <!-- for testing purposes -->
-    <div>
-        <a href="newBudgetForm.html" target="_blank" width=300 height=200>
-            <button>Budget Screen</button>
-        </a>
-    </div>
+
     <div>
         <a>
             <button onclick="logout()">Log Out</button>
@@ -101,6 +91,7 @@
         let noProjects;
         var user_ref = database.ref('users/' + localStorage.getItem('key') + '/budgets/')
         const gridToBeAppended = document.getElementById('projectGrid');
+       
 
         // Use .numChildren() to get the count of budgets for the user
         user_ref.once('value', function (snapshot) {
@@ -111,20 +102,34 @@
                 divIcon.id = childData.BudgetName
                 divIcon.className = 'grid-item';
 
+                //marks code
+                let buttonBudget=document.createElement("button");
+                buttonBudget.id=childData.BudgetName
+
                 let divName = divIcon.id;
                 
-
+                divIcon.appendChild(buttonBudget);
                 gridToBeAppended.appendChild(divIcon);
                 
                 
                
-                divIcon.innerHTML = '<a><button onclick="openBudget()">' + divIcon.id + '</button></a>';
+                //divIcon.innerHTML = '<a><button onclick="openBudget()">' + divIcon.id + '</button></a>';
+                buttonBudget.innerHTML = divIcon.id;
 
+                document.getElementById(buttonBudget.id).onclick = function() { openBudget(this.id); }
             });
             
         })
 
     }
+    function openBudget(clicked) {
+    window.location.href = 'budget.html';
+    const divIdentity=document.getElementById("");
+    console.log(clicked);
+
+
+    localStorage.setItem('budgetName',clicked);
+}
 
 </script>
 
