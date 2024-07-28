@@ -45,7 +45,6 @@
             padding: 10px;
             text-align: left;
         }
-        
     </style>
 </head>
 
@@ -63,102 +62,22 @@
                 <td>Income</td>
             </tr>
             <tr>
-                <td>Expenses</td>
-            </tr> 
+                <td>By Time</td>
+            </tr>
             <tr>
-                <td>Savings</td>
+                <td>Expenses</td>
             </tr>
         </table>
     </div>
     <div>
-       
-        <h1>New Budget</h1>
-        <form action="/action_Page.php">
-            <!-- User Information (existing fields) -->
-            <label for="fname">Budget Name</label><br>
-            <input type="text" id="budgetName" name="fname"><br>
-    
-    
-            <!-- Income Details -->
-            <h3>Income Details</h3>
-            <label for="incomeSource">Income Source Name</label><br>
-            <input type="text" id="incomeSource" name="incomeSource"><br>
-    
-            <label for="incomeAmount">Income Amount</label><br>
-            <input type="number" id="incomeAmount" name="incomeAmount"><br>
-    
-            <label for="incomeFrequency">Income Frequency</label><br>
-            <select id="incomeFrequency" name="incomeFrequency">
-                <option value="monthly">Monthly</option>
-                <option value="bi-weekly">Bi-weekly</option>
-                <option value="weekly">Weekly</option>
-            </select><br>
-    
-            <label for="incomeDate">Income Date</label><br>
-            <input type="date" id="incomeDate" name="incomeDate"><br><br>
-    
-            <!-- Expenses -->
-            <h3>Expenses</h3>
-            <label for="expenseCategory">Expense Category</label><br>
-            <input type="text" id="expenseCategory" name="expenseCategory"><br>
-    
-            <label for="expenseAmount">Expense Amount</label><br>
-            <input type="number" id="expenseAmount" name="expenseAmount"><br>
-    
-            <label for="expenseFrequency">Expense Frequency</label><br>
-            <select id="expenseFrequency" name="expenseFrequency">
-                <option value="daily">Daily</option>
-                <option value="weekly">Weekly</option>
-                <option value="monthly">Monthly</option>
-            </select><br>
-    
-            <label for="expenseDate">Expense Date</label><br>
-            <input type="date" id="expenseDate" name="expenseDate"><br>
-    
-    
-            <!-- <input type="submit" value="Submit"> -->
-        </form>
-        <!--Mark-->
-        <div>
-            <button onclick="save()" type="button">submit</button>
-        </div>
-         <div>
-            <button onclick="get()" type="button">get</button>
-        </div>
-        <div>
-            <button onclick="update()" type="button">update</button>
-        </div>
-        <div>
-            <button onclick="remove()" type="button">delete</button>
-        </div> 
-    
-        <div>
-            <button onclick="remove()" type="button">delete</button>
-        </div>
-        <div>
-            <a>
-                 <button onclick="logout()"> Log Out</button>
-           </a>  
-        </div>
-     
-      
-            <!-- The core Firebase JS SDK is always required and must be listed first -->
-            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    
-            <!-- TODO: Add SDKs for Firebase products that you want to use
-                 https://firebase.google.com/docs/web/setup#available-libraries -->
-            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-            
-            <!-- Our script must be loaded after firebase references -->
-            <script src="firebase.js"></script>
+        <a>
+            <button onclick="openProjectPage()"> Return</button>
+        </a>
     </div>
 
     <!-- Uche, ajusted the 'background colour' values to use the suitable RGB notation-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-      
-       
         const ctx = document.getElementById('myChart').getContext('2d');
         const myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -168,7 +87,7 @@
                     label: 'My First Dataset',
                     backgroundColor: ['rgb(0,120,255)', 'rgb(255,50,0)', 'rgb(0,220,0)'],
                     borderColor: 'rgb(255, 255, 255)',
-                    data: [save,expence,pay],
+                    data: [25, 10, 5],
                 }]
             },
         });

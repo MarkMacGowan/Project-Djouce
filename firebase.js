@@ -107,7 +107,7 @@ function login() {
 
             alert('User Logged In!!')
             console.log("User Logged In");
-            openBudget();
+            openProjectPage();
         })
         .catch(function (error) {
             // Firebase will use this to alert of its errors
@@ -154,8 +154,8 @@ function save() {
 
 
 
-    database.ref('users/' + localStorage.getItem('key') + '/' + document.getElementById('budgetName').value).set({
-        budgetName: budgetName,
+    database.ref('users/' + localStorage.getItem('key') + '/' + 'budgets/' + document.getElementById('budgetName').value).set({
+        BudgetName: budgetName,
         IncomeSource: incomeSource,
         IncomeAmount: incomeAmount,
         IncomeFrequency: incomeFrequency,
@@ -171,7 +171,7 @@ function save() {
 
 function get() {
 
-    var user_ref = database.ref('users/' + localStorage.getItem('key') + '/' + document.getElementById('budgetName').value)
+    var user_ref = database.ref('users/' + localStorage.getItem('key') + '/' + 'budgets/' + document.getElementById('budgetName').value)
     user_ref.on('value', function (snapshot) {
         var data = snapshot.val()
 
@@ -211,13 +211,13 @@ function update() {
         ExpenseDate: expenseDate
     }
 
-    database.ref('users/' + localStorage.getItem('key') + '/' + document.getElementById('budgetName').value).update(updates)
+    database.ref('users/' + localStorage.getItem('key') + '/' + 'budgets/' + document.getElementById('budgetName').value).update(updates)
 
     alert('updated')
 }
 
 function remove() {
-    database.ref('users/' + localStorage.getItem('key') + '/' + document.getElementById('budgetName').value).remove()
+    database.ref('users/' + localStorage.getItem('key') + '/' + 'budgets/' + document.getElementById('budgetName').value).remove()
 
     alert('deleted')
 }
@@ -232,11 +232,8 @@ function openProjectPage() {
 function openBudgetForm() {
     window.location.href = 'newBudgetForm.html';
 }
-function openLogInPage() {
-    window.location.href = 'Login.html';
-}
 //information added to grid
-function addProjectOptionsToGrid() {
+/* function addProjectOptionsToGrid() {
     checkProjectPresent();
     if (checkProjectPresent == true) {
         checkProjectAmountForUser
@@ -256,11 +253,11 @@ function addProjectOptionsToGrid() {
 
         gridToBeAppended.appendChild(divIcon);
     }
-}
+} */
 //information retrieved from server
-function checkProjectPresent() {
+/* function checkProjectPresent() {
 
 }
 function checkProjectAmountForUser() {
 
-}
+} */
