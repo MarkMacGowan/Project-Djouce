@@ -52,6 +52,9 @@
     <div>
         <canvas id="myChart"></canvas>
     </div>
+        <div>
+        <button onclick="remove()" type="button">delete</button>
+    </div>
     <div>
         <table id="infoTableBudget">
             <!--Uche, added '<th>' and '<td>' tags for table structure and formatting-->
@@ -159,7 +162,11 @@
 
             })
 
+function remove() {
+    database.ref('users/' + localStorage.getItem('key') + '/' + 'budgets/' + localStorage.getItem('budgetName')).remove()
 
+    alert('deleted')
+}
         }
     </script>
 </body>
