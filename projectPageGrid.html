@@ -23,11 +23,11 @@
             text-align: center;
         }
     </style>
-    
 </head>
 
-<body onload="addProjectOptionsToGrid()">
+<body onload="getBudgets()">
     <h1>The Budget App</h1>
+    
 
     <!--     <div>
         <a href="newBudgetForm.html" target="_blank" width=400 height=300>
@@ -36,68 +36,91 @@
     </div> -->
     <div id='projectGrid' class="grid-container">
         <div class="grid-item">
-            <a>
-                <button onclick="openBudgetForm()">+</button>
+            <a href="newBudgetForm.html" target="_blank" width=400 height=300>
+                <button>+</button>
             </a>
         </div>
     </div>
     <!-- for testing purposes -->
     <div>
-        <a >
-            <button onclick="openBudget()">Budget Screen</button>
+        <a href="newBudgetForm.html" target="_blank" width=300 height=200>
+            <button>Budget Screen</button>
         </a>
     </div>
 
-    <div>
-        <button onclick="createButton()">Create New Element</button>
-    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
 
-    <!--Log Out Button Konrad-->
-    <div>
-        <button onclick="logout()">Log Out</button>
-    </div>
-    <div>
-        <button onclick="getEverything()">CheckDtatabase</button>
-    </div>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
 
+    <!-- Our script must be loaded after firebase references -->
+    <script src="firebase.js"></script>
 </body>
 
 <script>
     const { webFrame } = require('electron')
 </script>
 <script>
-/*     function checkDatabaseForProjects() {
-            // if database has projects, check number of projects
-        }
-    function checkNoOfProjects() {
-            // query for number of projects stored in database 
-        } */
-    function createButton() {
-     let projectName;
-     let noProjects;
-     const gridToBeAppended=document.getElementById('projectGrid');
-
-     for (let i=0;i<3;i++){
-        let divIcon=document.createElement("div");
-        divIcon.id='project'+i;
-        divIcon.className='grid-item';
-        
-        let divName=divIcon.id;
-        divIcon.innerHTML='<a><button onclick="openBudget()">'+divName+'</button></a>';
-
-        gridToBeAppended.appendChild(divIcon);
-     }
+    function checkDatabaseForProjects() {
+        // if database has projects, check number of projects
     }
+    function checkNoOfProjects() {
+        // query for number of projects stored in database 
+    }
+    function createButton() {
+        let projectName;
+        let noProjects;
+        var user_ref = database.ref('users/' + localStorage.getItem('key') + '/budgets/')
+        const gridToBeAppended = document.getElementById('projectGrid');
+
+        for (let i = 0; i < 3; i++) {
+
+            let divIcon = document.createElement("div");
+            divIcon.id = 'project' + i;
+            divIcon.className = 'grid-item';
+
+            let divName = divIcon.id;
+            divIcon.innerHTML = '<a href="budget.html" target="_blank" width=400 height=300><button>' + divName + '</button></a>';
+
+            gridToBeAppended.appendChild(divIcon);
+        }
+
+    }
+    
+    function getBudgets() {
+        var count = 0
+        let projectName;
+        let noProjects;
+        var user_ref = database.ref('users/' + localStorage.getItem('key') + '/budgets/')
+        const gridToBeAppended = document.getElementById('projectGrid');
+
+        // Use .numChildren() to get the count of budgets for the user
+        user_ref.once('value', function (snapshot) {
+            var data = snapshot.val()
+            snapshot.forEach((childSnapshot) => {
+                var childData = childSnapshot.val();
+                let divIcon = document.createElement("div");
+                divIcon.id = childData.BudgetName
+                divIcon.className = 'grid-item';
+
+                let divName = divIcon.id;
+                
+
+                gridToBeAppended.appendChild(divIcon);
+                
+                
+               
+                divIcon.innerHTML = '<a href="budget.html" target="_blank" width=400 height=300><button>' + divIcon.id + '</button></a>';
+
+            });
+            
+        })
+
+    }
+
 </script>
-   
-          <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-         https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-    
-    <!-- Our script must be loaded after firebase references -->
-    <script src="firebase.js"></script>
+
 </html>
