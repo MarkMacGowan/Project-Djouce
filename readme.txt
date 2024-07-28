@@ -16,3 +16,4 @@ If Downloading Repository Follow These Steps:
 11) AFter this is finished, go into the package.json file and under scripts remove the test function and replace it with  "start": "electron ."
 12) Save everything and in terminal type "npm start"
 13) Your program should be loaded up.
+
